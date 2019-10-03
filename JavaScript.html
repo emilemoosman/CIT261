@@ -12,7 +12,7 @@
   
 </head>
 
-<body onload="showAllNotes()">
+<body> <!--onload="showAllNotes()">
 	<section id="note_entry_area">
 		<h1>Note It!</h1>
 		Description: <input id="description_input"></input>
@@ -20,6 +20,15 @@
 		<br>
 		<button onclick="saveNote()">Save</button>
 	</section>
-	<section id="all_notes_display"></section>
+	<section id="all_notes_display"></section>-->
+	<h1>JavaScript Fluency</h1>
+	<p>Enter 1 in the box below to add these numbers 1, 6, 13, 45, 22, 18</p>
+	<p>Enter 2 in the box below to add these numbers 90, 5, 41, 26, 15, 8</p>
+	<br>
+	<section>
+		<input id="input" placeholder="1 or 2"></input>
+		<button onclick="performAddition()">Add</button>
+	</section>
+	<section id="display_sum"></section>
 </body>
 </html>
