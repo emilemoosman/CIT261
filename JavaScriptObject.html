@@ -1,26 +1,32 @@
 <!doctype html>
 <html>
 <!--
-	This is fluency evidence of the code topic, JavaScript.
+	This is fluency evidence of the code topic, JavaScript Object.
 -->
 <head>
   <title>JavaScript Object - Topic Two</title>
   
-  <!--<script defer src="JavaScript.js"></script>-->
+  <script defer src="JavaScriptObject.js"></script>
+
   
   <!--<link rel="stylesheet" type="text/css" href="JavaScript.css">-->
   
 </head>
 
 <body> 
-	<h1>JavaScript Fluency</h1>
-	<p>Enter 1 in the box below to add these numbers 1, 6, 13, 45, 22, 18</p>
-	<p>Enter 2 in the box below to add these numbers 90, 5, 41, 26, 15, 8</p>
+	<h1>JavaScript Object Fluency</h1>
+	<h1>Person</h1>
+	First Name: <input id="first_name_input" placeholder="Enter first name"></input>
 	<br>
-	<section>
-		<input id="input" placeholder="1 or 2"></input>
-		<button onclick="performAddition()">Add</button>
-	</section>
-	<section id="display_sum"></section>
+	Last Name: <input id="last_name_input" placeholder="Enter last name"></input>
+	<br>
+	Gender: <input id="gender_input" placeholder="Enter gender"></input>
+	<br>
+	Age: <input id="age_input" placeholder="Enter age"></input>
+	<br>
+	Nationality: <input id="nationality_input" placeholder="Enter nationality"></input>
+	<br>
+	<button onclick="savePerson()">Save</button>
+	<section id="all_persons_display"></section>
 </body>
 </html>
