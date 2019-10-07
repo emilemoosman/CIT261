@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+  <title>Students</title>
+  <script>
+  	function addAndSaveStudent(){
+  		var aName = document.getElementById("name_input").value;
+  		var anAge = document.getElementById("age_input").value * 1;
+  		var aCollege = document.getElementById("college_input").value;
+		var aMajor = document.getElementById("major_input").value;
+  		var aStudent = {
+  			"name":aName,
+  			"age":anAge,
+  			"college":aCollege,
+			"major": aMajor
+  		};
+  		var allStudents = null;
+		var storedStudentsString = localStorage["all_students"];
+		if(storedStudentsString == null){
+			allStudents = [];
+		}
+		else{
+			allStudents = JSON.parse(storedStudentsString);
+		}
+		allStudents.push(aStudent);
+		var allStudentsString = JSON.stringify(allStudents);
+		localStorage["all_students"] = allStudentsString;
+		showAllStudents();
+
+		document.getElementById("name_input").value = null;
+		document.getElementById("age_input").value  = null;
+		document.getElementById("college_input").value = null;
+		document.getElementById("major_input").value = null;
+  	}
+  	function showAllStudents(){
+  		var storedStudentsString = localStorage["all_students"];
+		if(storedStudentsString != null){
+			var allStudents = JSON.parse(storedStudentsString);
+			var studentDisplayer = document.getElementById("all_students_display");
+	  		studentDisplayer.innerHTML = null;
+	  		var numberOfStudents = allStudents.length;
+	  		for (var i = 0; i < allStudents.length; i++) {
+	  			var aStudent = allStudents[i];
+	  			studentDisplayer.innerHTML += "<hr><p>Student: " + aStudent["name"] + "</p>"+"<p>Age: " + aStudent["age"] +
+														"</p>" + "<p>College: " + aStudent["college"] + "</p>" + "<p>Major: "+ aStudent["major"] +"</p>";
+	  		}
+		}
+  	}
+  </script>
+
+  <style>
+
+  	h1{
+		color: DarkGreen;
+  		text-align: center;
+  	}
+  	body{
+  		background-color: LightBlue;
+  	}
+  	input{
+  		margin-top: 5px;
+		border:none; 
+		border-radius:5px; 
+		box-shadow:0px 0px 5px #666666 inset; 
+		height:25px;
+		width:200px; 
+		text-indent:5px; 
+	} 
+	input:focus { 
+		outline:none;
+  	}
+  	#student_entry_area{
+  		width: 500px;
+  		padding-left: 5px;
+		border:none; 
+		border-radius:5px; 
+		box-shadow:0px 0px 5px #666666 inset; 
+		text-indent:5px; 
+  	}
+  	button{
+		background-color: DarkBlue;
+		color: LightBlue;
+  		margin-top: 5px;
+  		margin-bottom: 5px;
+		border:none; 
+		border-radius:5px; 
+		box-shadow:0px 0px 5px #666666;
+	} 
+  </style>
+</head>
+
+<body onload="showAllStudents()">
+	<section id="student_entry_area">
+		<h1>Our Students</h1>
+		<input id="name_input" placeholder="Name"></input>
+		<input id="age_input" placeholder="Age"></input>
+		<input id="college_input" placeholder="College"></input>
+		<input id="major_input" placeholder="Major"></input>
+		<br>
+		<button onclick="addAndSaveStudent()">Add Student</button>
+	</section>
+	<section id="all_students_display"></section>
+</body>
+</html>
