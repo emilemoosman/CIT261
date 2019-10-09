@@ -1,34 +1,128 @@
 <!doctype html>
 <html>
 <!--
-	This is fluency evidence of the code topic, JavaScript Object.
+	This is fluency evidence of the code topics, Transitions, Transforms, & Animations,
+	without custom libraries.
 -->
 <head>
-  <title>JavaScript Object - Topic Two</title>
-  
-  <script defer src="JavaScriptObject.js"></script>
+  <title>CSS3</title>
   
   <style>
+  
+	p {
+		width:  600px;
+		text-align: justify;
+	}
+  
+	img {
+		position: relative;
+		height: 100px;
+		width: 100px;
+		
+		/* Safari 4.0 - 8.0 */
+		-webkit-animation: floatBubble 4s infinite  normal ease-in;
+		/* Standard syntax */
+		animation: floatBubble 4s infinite  normal ease-in;
+	}
+	
+	#ballAnimation {
+		background-color: green;
+		height: 500px;
+		width:  600px;
+		
+	}
+	
+	/* Safari 4.0 - 8.0 */
+	@-webkit-keyframes floatBubble {
+		0% {
+			top:  0px;
+			left: 0px;
+		}
+		20% {
+			top:  400px;
+			left: 75px;
+		}
+		40% {
+			top:  100px;
+			left: 160px;
+		}
+		60% {
+			top:  400px;
+			left: 250px;
+		}		
+		80% {
+			top:  200px;
+			left: 330px;
+		}
+		100% {
+			top:  400px;
+			left: 450px;
+		}
+	}
+	
+	/* Standard syntax */
+	@keyframes floatBubble {
+		0% {
+			top:  0px;
+			left: 0px;
+		}
+		20% {
+			top:  400px;
+			left: 75px;
+		}
+		40% {
+			top:  100px;
+			left: 160px;
+		}
+		60% {
+			top:  400px;
+			left: 250px;
+		}		
+		80% {
+			top:  200px;
+			left: 330px;
+		}
+		100% {
+			top:  400px;
+			left: 450px;
+		}
+	}
 
-  	 
   </style>
   
 </head>
 
-<body onload="displayPerson()"> 
-	<h1>JavaScript Object Fluency</h1>
-	<h1>Person</h1>
-	First Name: <input id="first_name_input" placeholder="Enter first name"></input>
-	<br>
-	Last Name: <input id="last_name_input" placeholder="Enter last name"></input>
-	<br>
-	Gender: <input id="gender_input" placeholder="Enter gender"></input>
-	<br>
-	Age: <input id="age_input" placeholder="Enter age"></input>
-	<br>
-	Nationality: <input id="nationality_input" placeholder="Enter nationality"></input>
-	<br>
-	<button onclick="savePerson()">Save</button>
-	<section id="all_persons_display"></section>
+<body> 
+	<h1>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries</h1>
+	
+	<h2>CSS Transitions</h2>
+	<p>
+		CSS transitions allows you to change property values smoothly, over a given duration.
+	</p>
+	<div id="Transition">
+	</div>
+	
+	<h2>CSS Transitions</h2>
+	CSS transitions allows you to change property values smoothly, over a given duration.
+	<div id="Transform">
+	</div>
+	
+	<h2>Animation</h2>
+	<p>
+		CSS allows animation of HTML elements without using JavaScript or Flash! To create a CSS animation 
+		sequence, you style the element you want to animate with the animation property or its sub-properties.
+		This lets you configure the timing, duration, and other details of how the animation sequence should 
+		progress. This does not configure the actual appearance of the animation, which is done using 
+		the @keyframes rule.
+	</p>
+	<p>
+		When you specify CSS styles inside the @keyframes rule, the animation will gradually change from the 
+		current style to the new style at certain times. To get an animation to work, you must bind the 
+		animation to an element.
+	</p>
+	<div id="ballAnimation">
+		<img src="basketball-147794_1280.png" alt="Basketball"/>
+	</div>
+	
 </body>
 </html>
