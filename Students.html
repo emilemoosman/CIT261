@@ -1,51 +1,107 @@
 <!doctype html>
 <html>
+<!--
+	This is fluency evidence of the code topic JSON.
+-->
 <head>
   <title>Students</title>
   <script>
+	/*******
+		Add a student, store and retreive the student info
+		using JSON, and display students.
+	*******/
   	function addAndSaveStudent(){
+		// Get user entered student info from input elements.
   		var aName = document.getElementById("name_input").value;
   		var anAge = document.getElementById("age_input").value * 1;
   		var aCollege = document.getElementById("college_input").value;
 		var aMajor = document.getElementById("major_input").value;
+		
+		// Create a student object, and store user entered student
+		// infor into object.
   		var aStudent = {
   			"name":aName,
   			"age":anAge,
   			"college":aCollege,
 			"major": aMajor
   		};
+		
+		// Create variable to store array of students.
   		var allStudents = null;
+		// Create variable to store string student information stored
+		// in local storage.
 		var storedStudentsString = localStorage["all_students"];
-		if(storedStudentsString == null){
-			allStudents = [];
+		
+		// If there is no string info, stored under the all_students key...
+		if (storedStudentsString == null){
+			allStudents = []; 	// created an empty array
 		}
-		else{
+		else {
+			// there is student data, therefore use the JSON parse() 
+			// method, to parse the stored string student data, into
+			// a students object, containing information on each student.
 			allStudents = JSON.parse(storedStudentsString);
 		}
+		
+		// add the student object that was created (aStudent), to the 
+		// students object (allStudents).
 		allStudents.push(aStudent);
+		
+		// Create a string variable. Use the JSON stringify() method, to
+		// turn the students object into a string, and store in string
+		// variable. 
 		var allStudentsString = JSON.stringify(allStudents);
+		
+		// Store in local storage the students string data, under the key,
+		// all_students.
 		localStorage["all_students"] = allStudentsString;
+		
+		// Call the below method to display student info.
 		showAllStudents();
 
+		// reset the input tags.
 		document.getElementById("name_input").value = null;
 		document.getElementById("age_input").value  = null;
 		document.getElementById("college_input").value = null;
 		document.getElementById("major_input").value = null;
   	}
+	
+	/*******
+		Retrieve student info from local storage, and display.
+	*******/
   	function showAllStudents(){
+		// Retrieve student string info from local storage.
   		var storedStudentsString = localStorage["all_students"];
+		
+		// If there is student info stored in local storage...
 		if(storedStudentsString != null){
+		
+			// parse string info into a students object.
 			var allStudents = JSON.parse(storedStudentsString);
+			
+			// store the html element, which will display students information
 			var studentDisplayer = document.getElementById("all_students_display");
 	  		studentDisplayer.innerHTML = null;
+			
+			// Loop through the students object and display each student information
+			// in the desired html element.
 	  		var numberOfStudents = allStudents.length;
 	  		for (var i = 0; i < allStudents.length; i++) {
 	  			var aStudent = allStudents[i];
-	  			studentDisplayer.innerHTML += "<hr><p>Student: " + aStudent["name"] + "</p>"+"<p>Age: " + aStudent["age"] +
-														"</p>" + "<p>College: " + aStudent["college"] + "</p>" + "<p>Major: "+ aStudent["major"] +"</p>";
+	  			studentDisplayer.innerHTML += "<hr><p>Student: " + aStudent["name"] 
+				+ "</p>"+"<p>Age: " + aStudent["age"] + "</p>" + "<p>College: " 
+				+ aStudent["college"] + "</p>" + "<p>Major: "+ aStudent["major"] +"</p>";
 	  		}
 		}
   	}
+	
+	/*******
+		Clear student information from local storage when the page has unloaded, or
+		the browser window has been closed.
+	*******/
+	function clearStorage() {
+		localStorage.removeItem("all_students");
+	}
   </script>
 
   <style>
@@ -89,7 +145,7 @@
   </style>
 </head>
 
-<body onload="showAllStudents()">
+<body onload="showAllStudents()" onunload="clearStorage()">
 	<section id="student_entry_area">
 		<h1>Our Students</h1>
 		<input id="name_input" placeholder="Name"></input>
