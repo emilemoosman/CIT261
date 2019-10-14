@@ -1,22 +1,61 @@
 <!doctype html>
 <html>
 <head>
-	<title>Title of Your Page</title>
+	<title>Ajax Evidence</title>
 	<script>
+		// My function, which executes when the button is clicked.
 		function requestDisplay() {
+		
+		// Fetch the user input and store in variable.
+		var city = document.getElementById('cityID').value;
+		
+		// 1) Create an XMLHttpRequest() object. This is the keystone of AJAX and is 
+		//    used to exchange data with a web server behind the scenes.
 		var xhttp = new XMLHttpRequest();
+		
+		// Store element which will display the city messages.
 		var results = document.getElementById('displayDiv');
+		
+		// 3) The server processes the request,
+		// 4) The server sends a response back to the web page,
+
+		// 5) The response is read by JavaScript. The readyState property holds the status of 
+		//    the XMLHttpRequest. The onreadystatechange property defines a function to be executed 
+		//    when the readyState changes. The status property and the statusText property holds 
+		//    the status of the XMLHttpRequest object.		
 		xhttp.onreadystatechange = function () {
-		  if (this.readyState == 4 && this.status == 200) {
+			// If readyState status is 'finished an response is ready', and, the status is OK...
+			if (this.readyState == 4 && this.status == 200) {
+				// 6) Perform desired action resulting from successfully using AJAX to pull
+				// 	data from a web server.
+				
+				// parse the xhttp object (in JSON) into a JavaScript object.
 				var data = JSON.parse(xhttp.responseText);
-				for (i = 0; i < 10; i++) {
-					 results.innerHTML += '<li>' + "family: " + data.items[i].family + " , " +
-						  "category: " + data.items[i].category + '</li>';
-					 console.log(data);
-				}
-		  }
-		}
-		xhttp.open("GET", "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDGCSG48HaUElIeULsDvk5XyHfSh7gNGNM", true);
+				
+				// display to html element the current weather and weather description of the city 
+				// name entered by the user.
+				results.innerHTML += '<li>' + 'The current temperature in ' + data.name + ' is ' 
+				+ data.main.temp + '&#8451;, with ' + data.weather[0].description + '.</li>';
+			}
+			
+			// If readyState status is 'finished an response is ready', and, the status is a Bad Request
+			// i.e. no user input...
+			
+			if (this.readyState == 4 && this.status == 400) {
+				// display appropriate error message
+				window.alert("Please enter a city name in the input box.");
+			}
+			// If readyState status is 'finished an response is ready', and, the status is Page not found
+			// i.e. the city doesn't exist...
+			if (this.readyState == 4 && this.status == 404) {
+				// display appropriate error message
+				window.alert("Please enter a valid city name.");
+			}
+		};
+		
+		// 2) After the XMLHttpRequest() object is created, we use the open() and send() methods of 
+		//    the XMLHttpRequest object to send our request for data to the open weather server.
+		xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=6522ccd12045454f5848413f5dc0c874", true);
 		xhttp.send();
 };
 
@@ -29,11 +68,24 @@
 
 <body>
 	<section class = "updated">
-	<h3> Examples </h3>
+	<h3> Using Ajax (w3schools.com)</h3>
+	AJAX stands for <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML. AJAX is not a programming language, but a combination of existing technologies:<br><br>
+	<li>A browser built-in <b>XMLHttpRequest object</b> (to request data from a web server)</li>
+	<li>JavaScript and HTML DOM (to display or use the data)</li><br>
+	AJAX applications use XML to transport data, but it is also equally common to transport data as plain text or JSON text, hence why the name AJAX can be misleading.<br><br>
+	The great advantage of using AJAX is that it allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that 
+	it is possible to update parts of a web page, without reloading the whole page.
+	
 	<p>
-	Pull data from googleAPIs.com using an XMLHttp Request Object. Convert the object from a JSON object into a JavaScript object using JSON.parse This request will pull font information from the Google API. For convenience I will just display the first 10 items including the font family and font category. The entire object can be viewed in the console log. </p>
-		<br> <button type="button" onclick="requestDisplay()">Request and Display</button><br>
-		 <div id="displayDiv"></div><br>
+		To demonstrate my use of AJAX, I will request the weather data of a city based on user input, from https://openweathermap.org via the open weather API, and display
+		an appropriate message.
+	</p>
+	<p>
+		What city would you like to find the current weather for?
+		<input id="cityID" placeholder="Enter city">
+	</p>
+		<button type="button" onclick="requestDisplay()">Display Weather</button><br>
+		<div id="displayDiv"></div><br>
 	</section>
 </body>
 </html>
