@@ -1,35 +1,44 @@
 <!doctype html>
 <html>
 <head>
-	<title>Ajax & Local Storage Evidence</title>
-	<script>
+	<title>DOM & CSS Manipulation</title>
 	
-
-	<style>
-
-	</style>
+	<script defer src="DomManipulation.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="DomManipulation.css">
 </head>
 
 <body>
 	<section class = "updated">
-	<h3> Using Ajax (& Local Storage)</h3>
-	AJAX stands for <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML. AJAX is not a programming language, but a combination of existing technologies:<br><br>
-	<li>A browser built-in <b>XMLHttpRequest object</b> (to request data from a web server)</li>
-	<li>JavaScript and HTML DOM (to display or use the data)</li><br>
-	AJAX applications use XML to transport data, but it is also equally common to transport data as plain text or JSON text, hence why the name AJAX can be misleading.<br><br>
-	The great advantage of using AJAX is that it allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that 
-	it is possible to update parts of a web page, without reloading the whole page.
+	<h1><a href="https://www.w3schools.com/js/js_htmldom.asp">DOM Manipulation</a></h1>
 	
 	<p>
-		To demonstrate my use of AJAX, I will request the weather data of a city based on user input, from https://openweathermap.org via the open weather API, and display
-		an appropriate message.
+		When a web page is loaded, the browser creates a Document Object Model (DOM) of the page. With the HTML DOM, 
+		JavaScript can access and change all the elements of an HTML document. The HTML DOM is a standard object 
+		model and programming interface for HTML. It defines:
+			<ul>
+				<li>The HTML elements as objects</li>
+				<li>The properties of all HTML elements</li>
+				<li>The methods to access all HTML elements</li>
+				<li>The events for all HTML elements</li>
+			</ul><br>
+		The HTML DOM is a standard for how to get, change, add, or delete HTML elements. Several methods can
+		be used to dynamically change what HTML elements are displayed at any given time.
 	</p>
-	<p>
-		What city would you like to find the current weather for?
-		<input id="cityID" placeholder="Enter city">
-	</p>
-		<button type="button" onclick="cityWeather()">Display Weather</button><br>
+		<div id="buttonsDiv">
+			<button type="button" onclick="createParagraphs()">Create Paragraphs</button><br>
+			
+			<button type="button" onclick="insertParagraph()">Insert Before</button><br>
+			<button type="button" onclick="removeParagraph()">Remove Paragraph</button><br>
+		<!--		<button type="button" onclick="cityWeather()">Display Weather</button><br>
+			-->
+		</div>
 		<div id="displayDiv"></div><br>
 	</section>
 </body>
 </html>
+
+
+<!--
+	createElement, appendChild, insertBefore, removeChild, etc.
+-->

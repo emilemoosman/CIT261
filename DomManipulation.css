@@ -1,1 +1,36 @@
-sdsfsdfds
+  	h1{
+  		text-align: center;
+  	}
+  	body{
+  		background-color: LightGrey;
+  	}
+  	input{
+  		margin-top: 5px;
+		border: none; 
+		border-radius:5px; 
+		box-shadow:0px 0px 5px #666666 inset; 
+		height:25px;
+		width:45px; 
+		text-indent:5px; 
+	} 
+	input:focus { 
+		
+		box-shadow:0px 0px 5px blue inset;
+		border-radius:5px;
+		height:25px;
+		width:45px; 
+		text-indent:5px;
+  	}
+	
+		a:link, a:visited {
+	  background-color: #f44336;
+	  color: white;
+	  padding: 15px 25px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	}
+
+	a:hover, a:active {
+	  background-color: green;
+	}
