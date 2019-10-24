@@ -22,15 +22,35 @@
 		text-indent:5px;
   	}
 	
-		a:link, a:visited {
-	  background-color: #f44336;
-	  color: white;
-	  padding: 15px 25px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	}
-
 	a:hover, a:active {
 	  background-color: green;
 	}
+	
+	.myListStyle {
+		width: 100%;
+		padding: 25px;
+		background-color: coral;
+		color: white;
+		font-size: 25px;
+		box-sizing: border-box;
+	}
+	
+	.myLinkStyle {
+		background-color: aqua;
+		font-family: "Comic Sans MS", cursive, sans-serif
+		color: white;
+		padding: 15px 25px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+	}
+	
+	.myBodyStyle {
+		background-color: black;
+		font-family: fantasy;
+		color: yellow;
+		text-decoration: none;
+
+	}
+
+
