@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="DomManipulation.css">
 </head>
 
-<body>
+<body id="content">
 	<section class = "updated">
 	<h1><a href="https://www.w3schools.com/js/js_htmldom.asp">DOM Manipulation</a></h1>
 	
@@ -16,7 +16,7 @@
 		When a web page is loaded, the browser creates a Document Object Model (DOM) of the page. With the HTML DOM, 
 		JavaScript can access and change all the elements of an HTML document. The HTML DOM is a standard object 
 		model and programming interface for HTML. It defines:
-			<ul>
+			<ul id="myList">
 				<li>The HTML elements as objects</li>
 				<li>The properties of all HTML elements</li>
 				<li>The methods to access all HTML elements</li>
@@ -26,12 +26,11 @@
 		be used to dynamically change what HTML elements are displayed at any given time.
 	</p>
 		<div id="buttonsDiv">
-			<button type="button" onclick="createParagraphs()">Create Paragraphs</button><br>
-			
+			<button type="button" onclick="createParagraphs()">Create Paragraphs</button><br>			
 			<button type="button" onclick="insertParagraph()">Insert Before</button><br>
 			<button type="button" onclick="removeParagraph()">Remove Paragraph</button><br>
-		<!--		<button type="button" onclick="cityWeather()">Display Weather</button><br>
-			-->
+			<button type="button" onclick="replaceParagraph()">Replace Paragraph</button><br>
+
 		</div>
 		<div id="displayDiv"></div><br>
 	</section>
