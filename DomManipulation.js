@@ -84,7 +84,7 @@ function replaceParagraph() {
 		var para = document.createElement("P");              		
 		// Insert text into new HTML element.
 		para.innerHTML = "This is a REPLACE paragraph.";      		
-		// Remove paragraphs first child node (index 0)
+		// Replace paragraphs first child node (index 0)
 		paragraphs.replaceChild(para, paragraphs.childNodes[0]); 	
 	} else {
 		console.log("Cannot replace, as there are no paragraphs.");	
