@@ -20,198 +20,50 @@
 		text-align: justify;
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	}
-	
-	li {
-		width:  600px;
-		text-align: justify;
-	}
-	
+
 	/********************************
 		Transition
 	********************************/
 	
-	#transContainer {
-		width:  600px;
-		height: 600px;
-		background-color: aqua;
+	#myTransition {
+	width: 100px;
+	height: 100px;
+	background: red;
+	-webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+	transition: width 2s, height 2s, transform 2s;
 	}
-	
-	#transition {
-		width:  500px;
-		height: 500px;
-		position: relative;
-		left: 50px;
-		top:  50px;
-		background-color: yellow;
-		text-align: center;
-		font-family: Georgia; 		
-		font-size: 15px;
-		
-		/* 
-			transition: A shorthand property for setting the four transition properties into a single property
-			-Syntax-
-			transition: [property] [duration] [timing-function] [delay] |initial|inherit;
-			[property]        - name of the CSS property the transition effect is for
-			[duration]        - how many seconds or milliseconds the transition effect takes to complete
-			[timing-function] - Specifies the speed curve of the transition effect
-			[delay]           - Defines when the transition effect will start
-			|initial|inherit  - Sets this property to its default value,
-									  Inherits this property from its parent element.
-			
-		*/
-		transition: all 4s cubic-bezier(.51, .01, .5, .99) 1s;
 
-	}
-	
-	#transition:hover {
-		width: 220px;
-		height: 220px;
-		background-color: red;
-		font-size: 30px;
-		left: 200px;
-		top:  200px;
-	}
-	
-	/********************************
-		Transform
-	********************************/
-	
-	#transform {
-		width: 100px;
-		height: 100px;
-		background: lightBlue;
-		-webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
-		transition: width 3s, height 3s, transform 3s, background-color: 3s;
-	}
-	
-	#transform:hover {
+	#myTransition.change {
 		width: 300px;
 		height: 300px;
 		-webkit-transform: rotate(180deg); /* Safari */
 		transform: rotate(180deg);
 	}
 
-	/********************************
-		3D Transform
-		https://codepen.io/desandro/pen/LmWoWe
-	********************************/
-	
-	.threeDee {
-		width: 200px;
-		height: 260px;
-		border: 1px solid #CCC;
-		margin: 40px 0;
-		perspective: 600px;
-	}
 
-	.card {
-		width: 100%;
-		height: 100%;
-		transition: transform 1s;
-		transform-style: preserve-3d;
-		cursor: pointer;
-		position: relative;
-	}
-
-	.card.is-flipped {
-		transform: rotateY(180deg);
-	}
-
-	.card__face {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		line-height: 260px;
-		color: white;
-		text-align: center;
-		font-weight: bold;
-		font-size: 40px;
-		backface-visibility: hidden;
-	}
-
-	.card__face--front {
-		background: red;
-	}
-
-	.card__face--back {
-		background: blue;
-		transform: rotateY(180deg);
-	}
 
 	/********************************
-		Animations
+		Animation
 	********************************/
-  
-	img {
-		position: relative;
-		height: 100px;
-		width: 100px;
-		
-		/* Safari 4.0 - 8.0 */
-		-webkit-animation: floatBubble 4s infinite  normal ease-in;
-		/* Standard syntax */
-		animation: floatBubble 4s infinite  normal ease-in;
+	
+	#myAnimation {
+	  margin: 25px;
+	  width: 550px;
+	  height: 100px;
+	  background: orange;
+	  position: relative;
+	  font-size: 20px;
+	}
+
+	/* Chrome, Safari, Opera */
+	@-webkit-keyframes mymove {
+	  from {top: 0px;}
+	  to {top: 200px;}
+	}
+
+	@keyframes mymove {
+	  from {top: 0px;}
+	  to {top: 200px;}
 	}
 	
-	#ballAnimation {
-		background-color: green;
-		height: 500px;
-		width:  600px;
-		
-	}
-	
-	/* Safari 4.0 - 8.0 */
-	@-webkit-keyframes floatBubble {
-		0% {
-			top:  0px;
-			left: 0px;
-		}
-		20% {
-			top:  400px;
-			left: 75px;
-		}
-		40% {
-			top:  100px;
-			left: 160px;
-		}
-		60% {
-			top:  400px;
-			left: 250px;
-		}		
-		80% {
-			top:  200px;
-			left: 330px;
-		}
-		100% {
-			top:  400px;
-			left: 450px;
-		}
-	}
-	
-	/* Standard syntax */
-	@keyframes floatBubble {
-		0% {
-			top:  0px;
-			left: 0px;
-		}
-		20% {
-			top:  400px;
-			left: 75px;
-		}
-		40% {
-			top:  100px;
-			left: 160px;
-		}
-		60% {
-			top:  400px;
-			left: 250px;
-		}		
-		80% {
-			top:  200px;
-			left: 330px;
-		}
-		100% {
-			top:  400px;
-			left: 450px;
-		}
-	}
+}

@@ -1,8 +1,24 @@
-// Event Listeners
+// Event Listeners for JavaScript Events
 document.getElementById("clickMe").addEventListener("click", myClick);
 document.getElementById("mouseMe").addEventListener("mouseover", myMouseOver);
 document.getElementById("mouseMe").addEventListener("mouseout", myMouseOut);
+
+// Event Listener for HTML5 Canvas element
 document.addEventListener('DOMContentLoaded',displayCanvas,false);
+
+// Event Listeners for animation and transtition
+document.getElementById("myTransition").addEventListener("click", runTransition);
+var anim = document.getElementById("myAnimation");
+anim.addEventListener("click", runAnimation);
+// Code for Chrome, Safari and Opera
+anim.addEventListener("webkitAnimationStart", myStartFunction);
+anim.addEventListener("webkitAnimationIteration", myRepeatFunction);
+anim.addEventListener("webkitAnimationEnd", myEndFunction);
+// Standard syntax
+anim.addEventListener("animationstart", myStartFunction);
+anim.addEventListener("animationiteration", myRepeatFunction);
+anim.addEventListener("animationend", myEndFunction);
+
 
 
 /**************************************************
@@ -26,6 +42,45 @@ function myMouseOver() {
 function myMouseOut() {
 	document.getElementById("mouseMe").style.color = "black";
 }
+
+
+
+
+/**************************************************
+	create and run transition.
+**************************************************/
+function runTransition() {
+	document.getElementById("myTransition").classList.toggle("change");
+}
+
+/**************************************************
+	create and run animation.
+**************************************************/
+function runAnimation() {
+	var element = document.getElementById("myAnimation");
+	element.style.WebkitAnimation = "mymove 4s 2"; // Code for Chrome, Safari and Opera
+	element.style.animation = "mymove 4s 2";       // Standard syntax
+}
+
+function myStartFunction() {
+  this.innerHTML = "animationstart event occured - The animation has started";
+  this.style.backgroundColor = "pink";
+}
+
+function myRepeatFunction() {
+  this.innerHTML = "animationiteration event occured - The animation was played again";
+  this.style.backgroundColor = "lightblue";
+}
+
+function myEndFunction() {
+  this.innerHTML = "animationend event occured - The animation has completed";
+  this.style.backgroundColor = "lightgray";
+}
+
+/**************************************************
+	create and run transition and transformation.
+**************************************************/
+
 
 /**************************************************
 	example using the canvas html, coupled with 
