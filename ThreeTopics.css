@@ -20,6 +20,11 @@
 		text-align: justify;
 		font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	}
+	#mouseMe {
+		font-size: 30px;
+		font-family: Impact, Charcoal, sans-serif;
+		text-shadow: 2px 2px red;
+	}
 
 	/********************************
 		Transition
