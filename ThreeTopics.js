@@ -70,21 +70,21 @@ function runAnimation() {
 	element.style.animation = "mymove 4s 2";       // Standard syntax
 }
 
-// when the animation repeats via runAnimation, this method will run because of the eventListener
+// when the animation runs via runAnimation, this method will run because of the eventListener
 // we added on lines 14 or 19 (depending on your browser)
 function myStartFunction() {
   this.innerHTML = "animationstart event occured - The animation has started";
   this.style.backgroundColor = "pink";
 }
 
-// when the animation starts via runAnimation, this method will run because of the eventListener
+// when the animation repeats via runAnimation, this method will run because of the eventListener
 // we added on lines 15 or 21 (depending on your browser)
 function myRepeatFunction() {
   this.innerHTML = "animationiteration event occured - The animation was played again";
   this.style.backgroundColor = "lightblue";
 }
 
-// when the animation starts via runAnimation, this method will run because of the eventListener
+// when the animation ends via runAnimation, this method will run because of the eventListener
 // we added on lines 16 or 23 (depending on your browser)
 function myEndFunction() {
   this.innerHTML = "animationend event occured - The animation has completed";
@@ -92,7 +92,7 @@ function myEndFunction() {
 }
 
 /**************************************************
-	example using the canvas html, coupled with 
+	example using the canvas html element, coupled with 
 	javascript (this function) to render a drawing.
 	
 	I encountered a problem trying to using javascript in an
@@ -109,21 +109,21 @@ function myEndFunction() {
 	https://stackoverflow.com/questions/11349613/html5-canvas-not-working-in-external-javascript-file**************************************************/
 function displayCanvas() {
 	// get canvas element ID.
-	var c=document.getElementById('myCanvas');
-	var ctx=c.getContext('2d');
+	var c = document.getElementById('myCanvas');
+	var ctx = c.getContext('2d');
 	
 	// Create gradient
 	var grd = ctx.createRadialGradient(400, 200, 100, 800, 400, 100);
 	grd.addColorStop(0, "red");
 	grd.addColorStop(1, "white");
 
-	// Fill with gradient. Originally I wanted the gradient to fill the,
+	// Fill with gradient. Originally I wanted the gradient to fill the
 	// whole canvas element, but when I seen how cool it looked, I kept it.
 	ctx.fillStyle = grd;
 	ctx.fillRect(0, 0, 800, 400);
 
 	// Draw a circle in the middle of canvas.
-	//ctx.moveTo(400, 200);
+	// ctx.moveTo(400, 200);
 	ctx.arc(400, 200, 100, 0, 2 * Math.PI);
 	ctx.stroke();
 	
