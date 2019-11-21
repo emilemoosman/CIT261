@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<title>CIT261 Weather Project</title>
+	
+	<script defer src="WeatherProject.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="WeatherProject.css">
+</head>
+
+<body>
+	<section class = "updated">
+	<h3> Using Ajax (& Local Storage)</h3>
+	AJAX stands for <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML. AJAX is not a programming language, but a combination of existing technologies:<br><br>
+	<li>A browser built-in <b>XMLHttpRequest object</b> (to request data from a web server)</li>
+	<li>JavaScript and HTML DOM (to display or use the data)</li><br>
+	AJAX applications use XML to transport data, but it is also equally common to transport data as plain text or JSON text, hence why the name AJAX can be misleading.<br><br>
+	The great advantage of using AJAX is that it allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that 
+	it is possible to update parts of a web page, without reloading the whole page.
+	
+	<p>
+		To demonstrate my use of AJAX, I will request the weather data of a city based on user input, from https://openweathermap.org via the open weather API, and display
+		an appropriate message.
+	</p>
+	<p>
+		What city would you like to find the current weather for?
+		<input id="cityID" placeholder="Enter city">
+	</p>
+		<button type="button" onclick="cityWeather()">Display Weather</button><br>
+		<div id="displayDiv"></div><br>
+	</section>
+</body>
+</html>
