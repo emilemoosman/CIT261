@@ -5,8 +5,8 @@ function cityWeather() {
 	// Fetch the user input and store in variable.
 	var city = document.getElementById('cityID').value;
 	
-	// 1) Create an XMLHttpRequest() object. This is the keystone of AJAX and is 
-	//    used to exchange data with a web server behind the scenes.
+	// 1) Create an XMLHttpRequest() object, in order to exchange data with 
+	// a web server behind the scenes.
 	var xhttp = new XMLHttpRequest();
 	
 	// Store element which will display the city messages.
@@ -59,7 +59,7 @@ function cityWeather() {
 		}
 	};
 	
-	// 2) After the XMLHttpRequest() object is created, we use the open() and send() methods of 
+	// 2) After the XMLHttpRequest() object is created, use the open() and send() methods of 
 	//    the XMLHttpRequest object to send our request for data to the open weather server.
 	xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=6522ccd12045454f5848413f5dc0c874", true);
 	xhttp.send();
