@@ -1,5 +1,6 @@
-
-// My function, which executes when the button is clicked.
+/*************************************************
+ * This function executes when the button is clicked.
+ ************************************************/
 function cityWeather() {
 
 	// Fetch the user input and store in variable.
@@ -65,25 +66,13 @@ function cityWeather() {
 	xhttp.send();
 }
 
+/*************************************************
+ * If a correct city name is entered, this function
+ * is called, which displays the city weather data
+ * to display. This is done using local storage. 
+ ************************************************/
 function displayCityUsingLocalStorage(results) {
-	/***************************************************************************************
-	* Local Storage: The Web Storage API, of which Local Storage is a part, provides mechanisms by 
-	* which browsers can store data as key/value pairs. The keys and the values are always strings. The 
-	* localStorage mechanism stores data with no expiration date. This means that the stored data will 
-	* not be deleted when the browser is closed, and gets cleared only through JavaScript, or from 
-	* clearing the Browser cache/Locally Stored Data.
-	*
-	* The localStorage object is available via the Window.localStorage property, and when invoked will 
-	* create an instance of the Storage object, through which data items can be set, retrieved and removed.
-	*
-	* Web storage is more secure, and large amounts of data can be stored locally, without affecting 
-	* website performance. Unlike cookies, the storage limit is far larger (at least 5MB) and 
-	* information is never transferred to the server. 
-	*
-	* Because data is stored in key/value string pairs, the JSON stringify() and parse() methods 
-	* naturallyl work well with localStorage.
-	***************************************************************************************/
-	
+
 	// Retrieve from local storage our city weather data.
 	var cityWeatherString = localStorage.getItem("cityWeather");
 	
