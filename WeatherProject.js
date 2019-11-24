@@ -1,3 +1,6 @@
+// Event Listener for button
+document.getElementById("clickMe").addEventListener("click", cityWeather);
+
 /*************************************************
  * This function executes when the button is clicked.
  ************************************************/
@@ -32,17 +35,28 @@ function cityWeather() {
 				// The key is "cityWeather". The value is xhttp.responseText. 
 				// The xhttp.responseText property returns the server response as a JavaScript string.
 				localStorage.setItem("cityWeather", xhttp.responseText);
-				displayCityUsingLocalStorage(results);
+				// call displayCity() to display city weather info
+				displayCity(results);
 			} else {
 				// Sorry! No Web Storage support...
 				// Parse the xhttp response (JavaScript string) into a JavaScript object, and
 				// display items to screen.
-				var data = JSON.parse(xhttp.responseText);
+				var cityData = JSON.parse(xhttp.responseText);
 				
-				// display to html element the current weather and weather description of the city 
-				// name entered by the user.
-				results.innerHTML += '<li>' + 'The current temperature in ' + data.name + ' is ' 
-				+ data.main.temp + '&#8451;, with ' + data.weather[0].description + '.</li>';
+				// Extract and store required weather information from the object
+				var cityName    = cityData.name;
+				var weatherDesc = cityData.weather[0].description;
+				var weatherTemp = cityData.main.temp;
+				
+				// display city weather data by...
+				// Creating a <p> element.
+				var newParagraph = document.createElement("P");              		
+				// Inserting city weather info into new HTML element.
+				newParagraph.innerHTML = "The current temperature in " + cityName 
+				+ " is " + weatherTemp + "&#8451;, with " + weatherDesc + ".";      		
+				// Replacing first child node (index 0), a paragraph, of results DIV element,
+				// with newly created paragraph.
+				results.replaceChild(newParagraph, results.childNodes[0]); 	
 			}						
 		}
 		
@@ -69,9 +83,9 @@ function cityWeather() {
 /*************************************************
  * If a correct city name is entered, this function
  * is called, which displays the city weather data
- * to display. This is done using local storage. 
+ * to display. 
  ************************************************/
-function displayCityUsingLocalStorage(results) {
+function displayCity(results) {
 
 	// Retrieve from local storage our city weather data.
 	var cityWeatherString = localStorage.getItem("cityWeather");
@@ -87,7 +101,7 @@ function displayCityUsingLocalStorage(results) {
 	var weatherDesc = cityData.weather[0].description;
 	var weatherTemp = cityData.main.temp;
 	
-	// log to console
+	// log weather variable data to console
 	console.log("City name is " + cityName);
 	console.log("Weather is " + weatherDesc);
 	console.log("Temperature is " + weatherTemp);
@@ -97,7 +111,8 @@ function displayCityUsingLocalStorage(results) {
 	// Insert city weather info into new HTML element.
 	newParagraph.innerHTML = "The current temperature in " + cityName 
 	+ " is " + weatherTemp + "&#8451;, with " + weatherDesc + ".";      		
-	// Replace first child node (index 0) of results DIV element.
+	// Replace first child node (index 0), a paragraph, of results DIV element,
+	// with newly created paragraph.
 	results.replaceChild(newParagraph, results.childNodes[0]); 	
 }
 

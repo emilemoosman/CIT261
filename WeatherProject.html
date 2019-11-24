@@ -10,8 +10,14 @@
 
 <body>
 	<section class = "updated">
-	<h1> Find My Weather</h1>
 	
+	<!-- the below 3 divs control the "white cylon eye" linear animation above the heading -->
+	<div class="view_port">
+		<div class="polling_message"></div>
+		<div class="cylon_eye"></div>
+	</div>
+	
+	<h1> Find My Weather</h1>	
 	<p>
 		This app helps you find the weather of ANY city in the world.
 	</p>
@@ -19,7 +25,7 @@
 		What city would you like to know the current weather?
 		<input id="cityID" placeholder="Enter city">
 	</p>
-		<button type="button" onclick="cityWeather()">Display Weather</button><br>
+		<button type="button" id="clickMe">Display Weather</button><br>
 		<div id="displayDiv">
 			<p></p>
 		</div><br>
