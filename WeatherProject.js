@@ -77,29 +77,49 @@ function displayCityUsingLocalStorage(results) {
 	var cityWeatherString = localStorage.getItem("cityWeather");
 	
 	// log to console
-	console.log("cityWeather in local storage contained the following weather data\n"+ cityWeatherString);
+	console.log("cityWeather in local storage contained the following weather data\n" + cityWeatherString);
 	
 	// Parse the city weather string into an object
 	var cityData = JSON.parse(cityWeatherString);
 	
-	// Extract information from the weather object
+	// Extract and store required weather information from the weather object
 	var cityName    = cityData.name;
 	var weatherDesc = cityData.weather[0].description;
 	var weatherTemp = cityData.main.temp;
 	
-	// Store extracted information into localStorage
-	localStorage.setItem("cityNameLS", cityName);
-	localStorage.setItem("weatherLS", weatherDesc);
-	localStorage.setItem("temperatureLS", weatherTemp);
-	
 	// log to console
-	console.log(localStorage.getItem("cityNameLS"));
-	console.log(localStorage.getItem("weatherLS"));
-	console.log(localStorage.getItem("temperatureLS"));
+	console.log("City name is " + cityName);
+	console.log("Weather is " + weatherDesc);
+	console.log("Temperature is " + weatherTemp);
 	
-	// display to browser city info by using localStorage retrievals.
-	results.innerHTML += '<li>' + 'The current temperature in ' 
-	+ localStorage.getItem("cityNameLS") 
-	+ ' is ' + localStorage.getItem("temperatureLS") + '&#8451;, with ' 
-	+ localStorage.getItem("weatherLS") + '.</li>';			
+	// Create a <p> element.
+	var newParagraph = document.createElement("P");              		
+	// Insert city weather info into new HTML element.
+	newParagraph.innerHTML = "The current temperature in " + cityName 
+	+ " is " + weatherTemp + "&#8451;, with " + weatherDesc + ".";      		
+	// Replace first child node (index 0) of results DIV element.
+	results.replaceChild(newParagraph, results.childNodes[0]); 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
