@@ -2,6 +2,7 @@
 document.getElementById("clickMe").addEventListener("click", cityWeather);
 
 // Execute a function when the user releases a key on the keyboard (enter key)
+// https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
 document.getElementById("cityID").addEventListener("keyup", function(event) {
 	// Number 13 is the "Enter" key on the keyboard
 	if (event.keyCode === 13) {
