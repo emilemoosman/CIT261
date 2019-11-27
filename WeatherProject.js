@@ -1,3 +1,5 @@
+
+
 // Event Listener for button
 document.getElementById("clickMe").addEventListener("click", cityWeather);
 
@@ -59,6 +61,8 @@ function cityWeather() {
 				var cityName    = cityData.name;
 				var weatherDesc = cityData.weather[0].description;
 				var weatherTemp = cityData.main.temp;
+				var weatherIcon = cityData.weather[0].icon;
+				var iconURL     = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
 				
 				// display city weather data by...
 				// Creating a <p> element.
@@ -69,6 +73,9 @@ function cityWeather() {
 				// Replacing first child node (index 0), a paragraph, of results DIV element,
 				// with newly created paragraph.
 				results.replaceChild(newParagraph, results.childNodes[0]); 	
+				
+				// Display the weather icon from openweathermap.org
+				results.childNodes[1].innerHTML = "<img src=" + iconURL + ">";
 			}						
 		}
 		
@@ -112,11 +119,14 @@ function displayCity(results) {
 	var cityName    = cityData.name;
 	var weatherDesc = cityData.weather[0].description;
 	var weatherTemp = cityData.main.temp;
+	var weatherIcon = cityData.weather[0].icon;
+	var iconURL     = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
 	
 	// log weather variable data to console
 	console.log("City name is " + cityName);
 	console.log("Weather is " + weatherDesc);
 	console.log("Temperature is " + weatherTemp);
+	console.log("Weather icon is " + weatherIcon);
 	
 	// Create a <p> element.
 	var newParagraph = document.createElement("P");              		
@@ -126,6 +136,9 @@ function displayCity(results) {
 	// Replace first child node (index 0), a paragraph, of results DIV element,
 	// with newly created paragraph.
 	results.replaceChild(newParagraph, results.childNodes[0]); 	
+	
+	// Display the weather icon from openweathermap.org
+	results.childNodes[1].innerHTML = "<img src=" + iconURL + ">";
 }
 
 
