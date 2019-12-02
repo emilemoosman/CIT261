@@ -95,6 +95,9 @@ function cityWeather() {
 	
 	// 2) After the XMLHttpRequest() object is created, use the open() and send() methods of 
 	//    the XMLHttpRequest object to send our request for data to the open weather server.
+	//		Added the cors-anywhere.herokuapp.com address because of issues with loading a http request
+	//    using AJAX, over a https page in github pages.
+	//    https://stackoverflow.com/questions/33507566/mixed-content-blocked-when-running-an-http-ajax-operation-in-an-https-page
 	xhttp.open("GET", "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=6522ccd12045454f5848413f5dc0c874", true);
 	xhttp.send();
 }
