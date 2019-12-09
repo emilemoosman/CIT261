@@ -1,7 +1,11 @@
 
 
-// Event Listener for button
+// Event Listener for button and DOMContentLoaded
 document.getElementById("clickMe").addEventListener("click", cityWeather);
+// The DOMContentLoaded event fires when the initial HTML document has been 
+// completely loaded and parsed, without waiting for stylesheets, images, 
+// and subframes to finish loading.
+window.addEventListener('DOMContentLoaded', displayCity);
 
 // Execute a function when the user releases a key on the keyboard (enter key)
 // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
@@ -50,7 +54,7 @@ function cityWeather() {
 				// The xhttp.responseText property returns the server response as a JavaScript string.
 				localStorage.setItem("cityWeather", xhttp.responseText);
 				// call displayCity() to display city weather info
-				displayCity(results);
+				displayCity();
 			} else {
 				// Sorry! No Web Storage support...
 				// Parse the xhttp response (JavaScript string) into a JavaScript object, and
@@ -107,7 +111,12 @@ function cityWeather() {
  * is called, which displays the city weather data
  * to display. 
  ************************************************/
-function displayCity(results) {
+function displayCity() {
+	// Testing
+	console.log("displayCity() was called");
+	
+	// Store element which will display the city messages.
+	var results = document.getElementById('displayDiv');
 
 	// Retrieve from local storage our city weather data.
 	var cityWeatherString = localStorage.getItem("cityWeather");
