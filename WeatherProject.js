@@ -93,7 +93,7 @@ function cityWeather() {
 				var weatherDesc = cityData.weather[0].description;
 				var weatherTemp = cityData.main.temp;
 				var weatherIcon = cityData.weather[0].icon;
-				var iconURL     = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+				var iconURL     = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
 				
 				// display city weather data by...
 				// Creating a <p> element.
@@ -170,7 +170,7 @@ function displayCity() {
 	var weatherDesc = cityData.weather[0].description;
 	var weatherTemp = cityData.main.temp;
 	var weatherIcon = cityData.weather[0].icon;
-	var iconURL     = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+	var iconURL     = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
 	
 	// log weather variable data to console
 	console.log("City name is " + cityName);
