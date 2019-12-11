@@ -1,10 +1,10 @@
-
-
 // Event Listener for button and DOMContentLoaded
 document.getElementById("clickMe").addEventListener("click", cityWeather);
 // The DOMContentLoaded event fires when the initial HTML document has been 
 // completely loaded and parsed, without waiting for stylesheets, images, 
 // and subframes to finish loading.
+// I added this event listener to display from local storage city data last
+// stored. This will occur when the page is loaded.
 window.addEventListener('DOMContentLoaded', displayCity);
 
 // Execute a function when the user releases a key on the keyboard (enter key)
@@ -24,8 +24,35 @@ document.getElementById("cityID").addEventListener("keyup", function(event) {
  ************************************************/
 function cityWeather() {
 
-	// Fetch the user input and store in variable.
+	// Fetch the city name user input and store in variable.
 	var city = document.getElementById('cityID').value;
+	
+	// After adding the select country options, I needed to add this to check if the user didn't 
+	// enter a city name. BEFORE adding the select country options, which included adding the selected
+	// country value (line 45) to the XMLHttpRequest() request (line 143), THE XMLHttpRequest status == 400
+	// (line 110) would catch if there was no user input. AFTER adding the select country options, the
+	// XMLHttpRequest status == 400 wasn't catching no city name user input.
+	if (!city) {	// If the user did not enter a city name...
+		window.alert("Please enter a city name or zip code.");	// ...display error message,
+		return;		// and stop execution of the cityWeather() method.
+	}
+	
+	// Fetch the value of the country option selected by the user. The value associated with each option
+	// is the ISO 3166-1 Alpha-2 Code for the selected country, which will be included in the 
+	// XMLHttpRequest API call to openweathermap.org (line 143). Doing this will allow the user to 
+	// search for a city specific to the country selected. This allows for unique searches of cities 
+	// which share the same name, but located in different countries.
+	var country = document.getElementById("ISO_3166_1_Alpha_2").value;
+	
+	/// Comments with three backslashes block out code I plan on working on after finishing course. 
+	/// Use the REST COUNTRIES API to get the ISO 3166-1 alpha-2 country code
+	/// var code = getCountryCode(country);
+	
+	// Check whether user entered a city name or zip code (number), and adjust the API url call if needed.
+	var apiCall = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=";
+	if (Number.parseInt(city)) {	// if user enter a zip code, make a little change to apiCall variable.
+		apiCall = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?zip=";
+	}		
 	
 	// 1) Create an XMLHttpRequest() object, in order to exchange data with 
 	// a web server behind the scenes.
@@ -90,19 +117,30 @@ function cityWeather() {
 			window.alert("Please enter a city name in the input box.");
 		}
 		// If readyState status is 'finished an response is ready', and, the status is Page not found
-		// i.e. the city doesn't exist...
+		// i.e. the city doesn't exist in the selected country...
 		if (this.readyState == 4 && this.status == 404) {
-			// display appropriate error message
-			window.alert("City not found. Please enter a valid city name.");
+			// get the countries select tag...
+			var countries = document.getElementById("ISO_3166_1_Alpha_2");
+			// ... and the country name of the selected option for error msg.
+			var countryName = countries.options[countries.selectedIndex].text;
+			// check if city user input is a name or zip code and adjust error msg accordingly.
+			cityMsg = city;
+			if (Number.parseInt(city))
+				cityMsg = "City with zip code " + city;
+			
+			// display an appropriate error message.
+			window.alert(cityMsg + " is not found in " 
+			+ countryName 
+			+ ". Please enter a valid city name or zip code.");
 		}
 	};
 	
 	// 2) After the XMLHttpRequest() object is created, use the open() and send() methods of 
 	//    the XMLHttpRequest object to send our request for data to the open weather server.
 	//		Added the cors-anywhere.herokuapp.com address because of issues with loading a http request
-	//    using AJAX, over a https page in github pages.
+	//    using AJAX, over a https page in github pages (where my web app is stored).
 	//    https://stackoverflow.com/questions/33507566/mixed-content-blocked-when-running-an-http-ajax-operation-in-an-https-page
-	xhttp.open("GET", "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&APPID=6522ccd12045454f5848413f5dc0c874", true);
+	xhttp.open("GET", apiCall + city + "," + country + "&units=metric&APPID=6522ccd12045454f5848413f5dc0c874", true);
 	xhttp.send();
 }
 
@@ -152,6 +190,54 @@ function displayCity() {
 	// Display the weather icon from openweathermap.org
 	results.childNodes[1].innerHTML = "<img src=" + iconURL + ">";
 }
+
+/*************************************************
+ * Not part of assignment. Will work to integrate the commented out 
+ * method after course completion. My intent is to integrate the 
+ * REST COUNTRIES API into project after course completion. 
+ ************************************************
+function getCountryCode(country) {
+	//
+	//if (country) {
+	//	country = "US";
+	//	return country;
+	//}
+	
+	// native or partial name
+	var nameData = "https://restcountries.eu/rest/v2/name/" + country;
+	
+	// Full name
+	var countryData = "https://restcountries.eu/rest/v2/name/" + country + "?fullText=true";
+	
+	console.log("Country data is " + countryData);
+	
+	//
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			 alert(this.responseText);
+			 console.log(this.responseText);
+		}
+		
+		// If readyState status is 'finished an response is ready', and, the status is a Bad Request
+		// i.e. no user input...		
+		if (this.readyState == 4 && this.status == 400) {
+			// display appropriate error message
+			window.alert("Please enter a country name.");
+		}
+		// If readyState status is 'finished an response is ready', and, the status is Page not found
+		// i.e. the city doesn't exist...
+		if (this.readyState == 4 && this.status == 404) {
+			// display appropriate error message
+			window.alert("Country not found. Please enter a valid country.");
+		}
+	};
+	xhttp.open("GET", countryData, true);
+	xhttp.send();
+	
+	return country;
+}
+***/
 
 
 

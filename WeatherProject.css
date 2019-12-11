@@ -25,15 +25,28 @@ body{
 	background-color: LightBlue;
 }
 
-/* Transition */
-input{
+select{
 	margin-top: 5px;
 	border:none; 
 	border-radius:5px; 
 	box-shadow:0px 0px 5px #666666 inset; 
 	height:25px;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	width: 120px;
+	width: 180px;
+	text-indent:5px;
+	-webkit-transition: width 1s ease-in-out;
+	transition: width 1s ease-in-out;
+}
+
+/* Transition */
+input {
+	margin-top: 5px;
+	border:none; 
+	border-radius:5px; 
+	box-shadow:0px 0px 5px #666666 inset; 
+	height:25px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	width: 130px;
 	text-indent:5px;
 	-webkit-transition: width 1s ease-in-out;
 	transition: width 1s ease-in-out;
